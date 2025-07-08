@@ -1,6 +1,6 @@
 # GestureWolf 🐺🖐️
 
-A Linux-based gesture detection system to control your OS with 3-finger and 4-finger swipes and taps.
+A Linux-based gesture detection daemon system to control  your OS with 3-finger and 4-finger swipes and taps.
 
 Customizable. Lightweight. And mine.
 
