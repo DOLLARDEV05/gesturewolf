@@ -1,5 +1,8 @@
-print("hello gesture wolf world")
+import subprocess
 
+proc = subprocess.Popen(["sudo", "libinput", "debug-events"],
+                        stdout=subprocess.PIPE,
+                        text=True)
 
-
-print("this is working well")
+for line in proc.stdout:
+    print(line)
