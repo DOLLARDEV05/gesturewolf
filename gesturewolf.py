@@ -4,20 +4,18 @@ import subprocess
 proc = subprocess.Popen(["sudo", "libinput", "debug-events"],
                         stdout=subprocess.PIPE, text=True)
 
-active_fingers = None
+active_fingers = 0
 
 for line in proc.stdout:
     
     if "GESTURE_SWIPE_BEGIN" in line:
         parts = line.split()
-        
-        if "3" in parts:
+        active_fingers = int(parts[3])
+        if active_fingers==3:
             print("3 Finger swipe started\n")
-            active_fingers = 3
         
-        elif "4" in parts:
+        elif 4 == active_fingers:
             print("4 Finger swipe started\n")
-            active_fingers = 4
 
     elif "GESTURE_SWIPE_UPDATE" in line:
         
