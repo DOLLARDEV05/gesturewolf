@@ -1,7 +1,15 @@
 import subprocess
 
-proc = subprocess.run(["sudo", "libinput" ,"debug-events"])
-# proc = subprocess.Popen(["sudo", "libinput", "debug-events"],stdout=subprocess.PIPE, text=True)
+
+proc = subprocess.Popen(["sudo", "libinput", "debug-events"],
+                        stdout=subprocess.PIPE, text=True)
 
 for line in proc.stdout:
-    print(line)
+    if "GESTURE_SWIPE_BEGIN" in line  and "3" in line:
+        print("3 Finger swipe started\n")
+    elif "GESTURE_SWIPE_UPDATE" in line and "3" in line:
+        print("3 finger swiping\n")
+    elif "GESTURE_SWIPE_END" in line and "3" in line:
+        print("3 finger swipe ended")
+    else:
+        print(line)
