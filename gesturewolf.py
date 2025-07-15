@@ -22,15 +22,20 @@ for line in proc.stdout:
     elif "GESTURE_SWIPE_UPDATE" in line:
         
         parts = line.split()
+        subparts = parts[4:6]
+        axis = []
+        for item in subparts:
+            temp_var=item.split("/")
+            for thing in temp_var:
+                if thing != '':
+                    axis.append(thing)
         if 3 == active_fingers:
             print("3 finger swiping\n"
                   f"{just_printing}")
-            subparts = parts[4:6]
-            cordinate_list = [cordinate for number in numbers  subpart.split("/") for subpart in subparts]
-            # trying to make a running nested list comprehension !
-            print(cordinate_list)
+            
+
         elif 4 == active_fingers:
-            print("4 figer swiping\n")
+            print("4 finger swiping\n")
     
     elif "GESTURE_SWIPE_END" in line:
         
@@ -45,8 +50,3 @@ for line in proc.stdout:
     
     else:
         print(line)
-
-#  event5   GESTURE_SWIPE_UPDATE    +11.523s      3 -1.65/ 1.51 (-1.65/ 1.51 unaccelerated)
-
-# we have a few cases in which the program have to work fine!
-# '0.2''0.5' and '0.4/0.5' numbers here used are arbitrary!
