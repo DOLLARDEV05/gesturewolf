@@ -5,18 +5,16 @@ proc = subprocess.Popen(["sudo", "libinput", "debug-events"],
                         stdout=subprocess.PIPE, text=True)
 
 active_fingers = 0
+delta_y =0
+delta_x =0
 
 for line in proc.stdout:
     
     if "GESTURE_SWIPE_BEGIN" in line:
-        delta_x =0
-        delta_y =0
         parts = line.split()
         active_fingers = int(parts[3])
-        just_printing = int(parts[3])
         if active_fingers==3:
-            print("3 Finger swipe started\n"
-                  f"{just_printing}")
+            print("3 Finger swipe started\n")
         
         elif 4 == active_fingers:
             print("4 Finger swipe started\n")
@@ -35,7 +33,6 @@ for line in proc.stdout:
         
         if 3 == active_fingers:
             print("3 finger swiping\n")
-            
 
         elif 4 == active_fingers:
             print("4 finger swiping\n")
@@ -53,7 +50,14 @@ for line in proc.stdout:
             active_fingers =None
         
         elif 4 == active_fingers:
-            print("4 finger swipe ended\n")
+            if abs(delta_x) < abs(delta_y) and delta_y>0.00:
+                print("4 finger swipe swiping up to down\n")
+            elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
+                print("4 finger swipe swiping down to up\n")
+            elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
+                print("4 finger swipe left to right\n")
+            elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
+                print("4 finger swipe right to left")
             active_fingers =None
         delta_x =0
         delta_y =0
