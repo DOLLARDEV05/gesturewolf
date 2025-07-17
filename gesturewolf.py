@@ -28,8 +28,8 @@ for line in proc.stdout:
             for thing in temp_var:
                 if thing != '':
                     axis.append(thing)
-        delta_x += float(axis[0])
-        delta_y += float(axis[1])
+        delta_x += float(axis[0]) #might want to look into this.
+        delta_y += float(axis[1]) #might want to look into this.
         
         if 3 == active_fingers:
             print("3 finger swiping\n")
@@ -41,12 +41,16 @@ for line in proc.stdout:
         if  3 == active_fingers:
             if abs(delta_x) < abs(delta_y) and delta_y>0.00:
                 print("3 finger swipe swiping up to down\n")
+                subprocess.run(["xdotool","key","ctrl+<ANYKEY>"])
             elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
                 print("3 finger swipe swiping down to up\n")
+                subprocess.run(["xdotool","key","Super"])
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
                 print("3 finger swipe left to right\n")
+                subprocess.run(["xdotool","key","ctrl+alt+Left"])
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
                 print("3 finger swipe right to left")
+                subprocess.run(["xdotool","key","ctrl+alt+Right"])
             active_fingers =None
         
         elif 4 == active_fingers:
@@ -64,4 +68,3 @@ for line in proc.stdout:
     
     else:
         print(line)
-
