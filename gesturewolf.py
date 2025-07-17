@@ -41,7 +41,7 @@ for line in proc.stdout:
         if  3 == active_fingers:
             if abs(delta_x) < abs(delta_y) and delta_y>0.00:
                 print("3 finger swipe swiping up to down\n")
-                subprocess.run(["xdotool","key","ctrl+<ANYKEY>"])
+                subprocess.run(["xdotool","key","Super+d"])
             elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
                 print("3 finger swipe swiping down to up\n")
                 subprocess.run(["xdotool","key","Super"])
@@ -60,8 +60,10 @@ for line in proc.stdout:
                 print("4 finger swipe swiping down to up\n")
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
                 print("4 finger swipe left to right\n")
+                subprocess.run(["xdotool","key","alt+Tab+Right"])
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
                 print("4 finger swipe right to left")
+                subprocess.run(["xdotool","key","alt+Tab+Left"])
             active_fingers =None
         delta_x =0
         delta_y =0
