@@ -70,3 +70,5 @@ for line in proc.stdout:
     
     else:
         print(line)
+# have to make the volume bar and if possible dynamic! and also make
+# script start on runtime! and if possible other types of polishing!
