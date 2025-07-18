@@ -71,10 +71,14 @@ for line in proc.stdout:
                 print("4 finger swipe swiping down to up\n")
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
                 print("4 finger swipe left to right\n")
-                subprocess.run(["xdotool","key","alt+Tab+Right"])
+                RightSwipe = config.get('4FingerSwipe','Right')
+                RightSwipe = RightSwipe.split()
+                subprocess.run(RightSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
                 print("4 finger swipe right to left")
-                subprocess.run(["xdotool","key","alt+Tab+Left"])
+                LeftSwipe = config.get('4FingerSwipe','Left')
+                LeftSwipe = LeftSwipe.split()
+                subprocess.run(LeftSwipe)
             active_fingers =None
         delta_x =0
         delta_y =0
@@ -92,3 +96,5 @@ for line in proc.stdout:
 #4️⃣ make pinching gestures 
 
 #5️⃣ clean up the code and reorganise
+
+#6️⃣ fixup the 4 finger L/R getures they are kinda wierd!
