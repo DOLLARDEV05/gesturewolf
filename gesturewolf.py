@@ -1,5 +1,8 @@
 import subprocess
+from configparser import ConfigParser 
 
+config  = ConfigParser()
+config.read('config.ini')
 
 proc = subprocess.Popen(["sudo", "libinput", "debug-events"],
                         stdout=subprocess.PIPE, text=True)
@@ -41,16 +44,24 @@ for line in proc.stdout:
         if  3 == active_fingers:
             if abs(delta_x) < abs(delta_y) and delta_y>0.00:
                 print("3 finger swipe swiping up to down\n")
-                subprocess.run(["xdotool","key","Super+d"])
+                DownSwipe = config.get('3FingerSwipe','Down')
+                DownSwipe = DownSwipe.split()
+                subprocess.run(DownSwipe)
             elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
                 print("3 finger swipe swiping down to up\n")
-                subprocess.run(["xdotool","key","Super"])
+                UpSwipe = config.get('3FingerSwipe','Up')
+                UpSwipe = UpSwipe.split()
+                subprocess.run(UpSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
                 print("3 finger swipe left to right\n")
-                subprocess.run(["xdotool","key","ctrl+alt+Left"])
+                RightSwipe = config.get('3FingerSwipe','Right')
+                RightSwipe = RightSwipe.split()
+                subprocess.run(RightSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
-                print("3 finger swipe right to left")
-                subprocess.run(["xdotool","key","ctrl+alt+Right"])
+                print("3 finger swipe right to left") 
+                LeftSwipe = config.get('3FingerSwipe','Left')
+                LeftSwipe = LeftSwipe.split()
+                subprocess.run(LeftSwipe)
             active_fingers =None
         
         elif 4 == active_fingers:
@@ -70,5 +81,14 @@ for line in proc.stdout:
     
     else:
         print(line)
-# have to make the volume bar and if possible dynamic! and also make
-# script start on runtime! and if possible other types of polishing!
+
+#1️⃣ make the volume bar logic (if possible make this dynamic)
+
+#2️⃣ make this autorun at runtime.
+
+#3️⃣ complete the config file and autoload defaults when no config is 
+# found
+
+#4️⃣ make pinching gestures 
+
+#5️⃣ clean up the code and reorganise
