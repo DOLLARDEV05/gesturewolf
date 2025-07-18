@@ -80,7 +80,7 @@ for line in proc.stdout:
     else:
         print(line,"😉")
 
-#1️⃣ make the volume bar logic (if possible make this dynamic)
+#1️⃣ make the volume bar logic 
 
 #2️⃣ make this autorun at runtime.
 
@@ -92,3 +92,7 @@ for line in proc.stdout:
 #5️⃣ clean up the code and reorganise
 
 #6️⃣ fixup the 4 finger L/R getures they are kinda wierd!
+
+#7️⃣ add dynamic gesutures if possible!
+
+#8️⃣ if possible add a feature in dynamic that is similar to win swiping
