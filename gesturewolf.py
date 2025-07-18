@@ -43,22 +43,18 @@ for line in proc.stdout:
     elif "GESTURE_SWIPE_END" in line:
         if  3 == active_fingers:
             if abs(delta_x) < abs(delta_y) and delta_y>0.00:
-                print("3 finger swipe swiping up to down\n")
                 DownSwipe = config.get('3FingerSwipe','Down')
                 DownSwipe = DownSwipe.split()
                 subprocess.run(DownSwipe)
             elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
-                print("3 finger swipe swiping down to up\n")
                 UpSwipe = config.get('3FingerSwipe','Up')
                 UpSwipe = UpSwipe.split()
                 subprocess.run(UpSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
-                print("3 finger swipe left to right\n")
                 RightSwipe = config.get('3FingerSwipe','Right')
                 RightSwipe = RightSwipe.split()
                 subprocess.run(RightSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
-                print("3 finger swipe right to left") 
                 LeftSwipe = config.get('3FingerSwipe','Left')
                 LeftSwipe = LeftSwipe.split()
                 subprocess.run(LeftSwipe)
@@ -70,12 +66,10 @@ for line in proc.stdout:
             elif abs(delta_x) < abs(delta_y) and delta_y<0.00:
                 print("4 finger swipe swiping down to up\n")
             elif abs(delta_x) > abs(delta_y) and delta_x>0.00:
-                print("4 finger swipe left to right\n")
                 RightSwipe = config.get('4FingerSwipe','Right')
                 RightSwipe = RightSwipe.split()
                 subprocess.run(RightSwipe)
             elif abs(delta_x) > abs(delta_y) and delta_x<0.00:
-                print("4 finger swipe right to left")
                 LeftSwipe = config.get('4FingerSwipe','Left')
                 LeftSwipe = LeftSwipe.split()
                 subprocess.run(LeftSwipe)
@@ -84,7 +78,7 @@ for line in proc.stdout:
         delta_y =0
     
     else:
-        print(line)
+        print(line,"😉")
 
 #1️⃣ make the volume bar logic (if possible make this dynamic)
 
